@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+	<title>Issued Book Details</title>
+</head>
+
+<body>
+	<div class="container">
+		<h3 class="text-center">Issued Book Details</h3>
+		<hr>
+		<div class="row">
+			<div class="col-md-6">
+				<a th:href="@{/book/issueBook}" class="btn btn-primary btn-sm">Issue Book</a>
+			</div>
+			<div class="col-md-6 text-md-end">
+				<a th:href="@{/librarian/viewBookDetails}" class="btn btn-primary btn-sm">View Book</a>
+			</div>
+		</div>
+
+		<table class="table table-bordered table-stripped text-center mt-3">
+			<thead class="table-dark">
+				<tr>
+					<th>Call No</th>
+					<th>Student Id</th>
+					<th>Student Name</th>
+					<th>Student Contact</th>
+					<th>Issued Date</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="tempIssuedBook:${issueBook}">
+					<td th:text="${tempIssuedBook.bookCallno}" />
+					<td th:text="${tempIssuedBook.studentId}" />
+					<td th:text="${tempIssuedBook.studentName}" />
+					<td th:text="${tempIssuedBook.studentContact}" />
+					<td th:text="${tempIssuedBook.issuedDate}" />
+					<td>
+						<div>
+							<a th:href="@{/book/returnBook(bookCallno=${tempIssuedBook.bookCallno},studentId=${tempIssuedBook.studentId})}"
+								class="btn btn-primary btn-sm">Return Book</a>
+						</div>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>

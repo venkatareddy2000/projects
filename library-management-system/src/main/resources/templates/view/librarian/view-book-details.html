@@ -1,0 +1,60 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+	<!-- Bootstrap CSS -->
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+	<title>Book Details</title>
+</head>
+
+<body>
+	<div class="container">
+		<h3 class="text-center">Book Details</h3>
+		<hr>
+		<div class="row">
+			<div class="col-md-6">
+				<a th:href="@{/book/addBookDetails}" class="btn btn-primary btn-sm">Add Book</a>
+			</div>
+			<div class="col-md-6 text-md-end">
+				<a th:href="@{/library/home}" class="btn btn-primary btn-sm">Back to Home</a>
+			</div>
+		</div>
+		<table class="table table-bordered table-stripped text-center mt-3">
+			<thead class="table-dark">
+				<tr>
+					<th>Call No</th>
+					<th>Name</th>
+					<th>Author</th>
+					<th>Publisher</th>
+					<th>Quantity</th>
+					<th>Issued</th>
+					<th>Added Date</th>
+					<th>Action</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="tempBook : ${book}">
+					<td th:text="${tempBook.callNo}" />
+					<td th:text="${tempBook.name}" />
+					<td th:text="${tempBook.author}" />
+					<td th:text="${tempBook.publisher}" />
+					<td th:text="${tempBook.quantity}" />
+					<td th:text="${tempBook.issued}" />
+					<td th:text="${tempBook.addedDate}" />
+					<td>
+						<a th:href="@{/book/viewIssuedBooks}" class="btn btn-primary btn-sm">Issued Book</a>
+						<a th:href="@{/book/deleteBook(bookId=${tempBook.id})}" class="btn btn-danger btn-sm">Delete</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</body>
+
+</html>
